@@ -1,0 +1,130 @@
+%%% Preamble for cv.tex — compile with XeLaTeX or LuaLaTeX (fontspec):
+%%%   xelatex cv.tex
+%%% Only depends on packages that ship with BasicTeX; fonts live in ./fonts.
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{iftex}
+\RequireTUTeX
+
+\usepackage[a4paper,top=1.5cm,bottom=1.5cm,left=1.8cm,right=1.8cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+%%% Fonts (Lato for body, Raleway for headings; both SIL OFL)
+\setmainfont{Lato}[
+  Path           = fonts/,
+  Extension      = .ttf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-boldItalic,
+]
+\newfontfamily\headingfont{Raleway}[
+  Path           = fonts/,
+  Extension      = .ttf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-boldItalic,
+]
+\linespread{1.06}
+
+%%% Colours
+\definecolor{accent}{HTML}{1D5B8F}
+\definecolor{ink}{HTML}{1F2328}
+\definecolor{muted}{HTML}{5C6773}
+\definecolor{rulecol}{HTML}{C9D1D9}
+\color{ink}
+
+%%% Layout basics
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{3em}
+\raggedbottom
+
+\makeatletter
+% Keep a heading together with the first lines below it (same idea as needspace.sty).
+\newcommand{\cv@needspace}[1]{\par\penalty-100\begingroup
+  \setlength{\dimen@}{#1}%
+  \vskip\z@\@plus\dimen@\penalty-100\vskip\z@\@plus-\dimen@
+  \vskip\dimen@\penalty9999\vskip-\dimen@\vskip\z@skip
+  \endgroup}
+
+%%% Header
+\newcommand{\MyName}[1]{%
+  {\headingfont\bfseries\fontsize{24}{28}\selectfont\color{accent}#1}\par\vspace{3pt}}
+\newcommand{\Tagline}[1]{%
+  {\headingfont\bfseries\large\color{ink}#1}\par\vspace{5pt}}
+\newcommand{\Contact}[1]{%
+  {\small\color{muted}#1}\par}
+\newcommand{\cvsep}{\enspace{\color{rulecol}|}\enspace}
+
+\newcommand{\CircularPhoto}[1]{%
+  \begin{tikzpicture}
+    \clip (0,0) circle (1.25cm);
+    \node at (0,0) {\includegraphics[width=2.5cm]{#1}};
+  \end{tikzpicture}}
+
+% \begin{CVHeader}{photo.jpg} ... \end{CVHeader}; leave the argument empty for no photo.
+\newenvironment{CVHeader}[1]{%
+  \def\cv@photo{#1}%
+  \noindent\begin{minipage}[c]{\dimexpr\linewidth-2.9cm\relax}}
+  {\end{minipage}\hfill
+  \ifx\cv@photo\@empty\else\CircularPhoto{\cv@photo}\fi\par}
+
+%%% Sections
+\newcommand{\NewPart}[1]{%
+  \par\addvspace{11pt}\cv@needspace{4\baselineskip}%
+  \noindent{\headingfont\bfseries\color{accent}\addfontfeatures{LetterSpace=6}\MakeUppercase{#1}}%
+  \enspace{\color{rulecol}\leaders\hrule height 0.37em depth -0.32em\hfill}\par
+  \nobreak\vspace{5pt}}
+
+\newcommand{\NewSubPart}[1]{%
+  \par\addvspace{4pt}\cv@needspace{3\baselineskip}%
+  \noindent{\headingfont\bfseries\small\color{accent}#1}\par
+  \nobreak\vspace{1pt}}
+
+\newcommand{\sepspace}{\vspace{6pt}}
+
+%%% Entries
+\newcommand{\SimpleEntry}[1]{\noindent#1\par}
+
+% \TimeEntry{dates}{title}{organisation}{body}
+\newcommand{\TimeEntry}[4]{%
+  \par\addvspace{3pt}\cv@needspace{3\baselineskip}%
+  \noindent{\bfseries#2}%
+  \if\relax\detokenize{#3}\relax\else\enspace{\color{muted}#3}\fi
+  \hfill{\small\color{muted}#1}\par\nobreak
+  \vspace{1pt}#4\par}
+
+% \TimeEntryFocus{dates}{title}{organisation}{one-line focus}{body}
+\newcommand{\TimeEntryFocus}[5]{%
+  \par\addvspace{3pt}\cv@needspace{4\baselineskip}%
+  \noindent{\bfseries#2}%
+  \if\relax\detokenize{#3}\relax\else\enspace{\color{muted}#3}\fi
+  \hfill{\small\color{muted}#1}\par\nobreak
+  \vspace{1pt}{\small\itshape\color{muted}#4}\par\nobreak
+  \vspace{1pt}#5\par}
+
+% \TitleEntry{label}{content} — two-column row with a hanging indent
+\newlength{\cv@titlecol}
+\setlength{\cv@titlecol}{3.4cm}
+\newcommand{\TitleEntry}[2]{%
+  \par\noindent\hangindent=\cv@titlecol\hangafter=1
+  \makebox[\cv@titlecol][l]{\bfseries#1}#2\par\vspace{2pt}}
+
+%%% Lists (drop-in for paralist's compactitem)
+\newcommand{\cvbullet}{{\color{accent}\small\textbullet}}
+\newenvironment{compactitem}[1][\cvbullet]{%
+  \begin{list}{#1}{%
+    \setlength{\topsep}{2pt}\setlength{\partopsep}{0pt}%
+    \setlength{\itemsep}{1.5pt}\setlength{\parsep}{0pt}%
+    \setlength{\leftmargin}{1.1em}\setlength{\labelwidth}{0.7em}%
+    \setlength{\labelsep}{0.4em}}}
+  {\end{list}}
+\makeatother
