@@ -20,7 +20,7 @@
 
 %%% Profile
 \NewPart{Profile}
-\SimpleEntry{Full-stack product engineer with a strong focus on infrastructure.
+\SimpleEntry{engineer with a strong focus on infrastructure.
 At Simplicate I build features across a PHP (Symfony/Yii) and React/TypeScript SaaS platform,
 and work on its AWS infrastructure in Terraform: migrating production services to ECS Fargate,
 security alerting, data-store upgrades and Datadog observability. I like to understand systems
@@ -29,15 +29,15 @@ down to the lowest layer, with a debugger, a packet capture or a decompiler.}
 %%% Skills
 \NewPart{Skills}
 \TitleEntry{Cloud \& infra}{AWS (ECS Fargate, ECR, RDS, ElastiCache/MemoryDB, S3, CloudFront, Lambda,
-  API Gateway, Step Functions, Route 53, IAM), Terraform, Docker, Kubernetes (Talos, Helm), Ansible,
-  GitHub Actions (OIDC), Linux, networking (VLANs, WireGuard)}
+  API Gateway, Step Functions, Route 53, IAM), Terraform, Docker, Kubernetes, Ansible,
+  GitHub Actions (OIDC), Linux, networking}
 \TitleEntry{Observability}{Datadog (APM, logs, monitors), GuardDuty, Checkov, Monolog, incident response}
-\TitleEntry{Backend}{PHP 8 (Symfony, API Platform, Doctrine, Yii, Laravel), Go, Python, Node.js,
-  MariaDB/MySQL, Redis/Valkey, REST/OpenAPI, RPC, GraphQL, WordPress (ACF), webhooks, PHPUnit, \mbox{PHPStan}}
+\TitleEntry{Backend}{PHP (Symfony, API Platform, Doctrine, Yii, Laravel), Go, Python, Node.js,
+  MariaDB, Redis/Valkey  RPC, GraphQL, WordPress, PHPUnit, \mbox{PHPStan}}
 \TitleEntry{Frontend \& mobile}{TypeScript, React, Redux Toolkit, Nx, Vitest, Storybook, i18next, Next.js,
-  styled-components, React Native (Expo), Flutter}
+  styled-components, React Native, Flutter}
 \TitleEntry{Ways of working}{Code review, automated testing, Scrum, domain-driven design,
-  agentic AI development (Claude Code, MCP)}
+  agentic AI development (Claude Code, MCP, loop engineering)}
 
 %%% Work experience
 \NewPart{Experience}
@@ -52,12 +52,8 @@ down to the lowest layer, with a debugger, a packet capture or a decompiler.}
   \item Led the infrastructure side of moving PDF generation to a new ECS Fargate service (ECR, ALB,
     Route 53, Step Functions): ran it next to the legacy service on staging behind a feature flag,
     added Datadog 5xx monitoring, switched production over and decommissioned the old stack.
-  \item Migrated ElastiCache Serverless and MemoryDB to Valkey, added a MemoryDB replica for
-    zero-downtime patching, enabled automatic minor-version upgrades on RDS (MariaDB) and right-sized
-    read replicas and storage.
-  \item Built self-service customer file exports for the internal management platform: S3, Lambda and
-    an ECS workflow job, plus the permission checks and UI.
-\end{compactitem}
+    \item Migrated ElastiCache Serverless and MemoryDB to Valkey for: cost savings, performance and multi-az setup
+  \end{compactitem}
 
 \NewSubPart{Security \& observability}
 \begin{compactitem}
@@ -66,15 +62,21 @@ down to the lowest layer, with a debugger, a packet capture or a decompiler.}
     logs to Datadog; redacted credentials from nginx and auth-server access logs.
 \end{compactitem}
 
-\NewSubPart{Product engineering}
+\NewSubPart{Product engineering (full-stack: PHP/Symfony, React/TypeScript)}
 \begin{compactitem}
-  \item Added sales tools to Simplicate's MCP server (AI connector) and prototyped an AI-based sales
-    conversion score.
+  \item Moved CRM company lookup from OpenKVK (monthly data, Dutch only) to the
+    Credit Device API, from API client to UI. Users now add a customer by picking a company name:
+    company details fill in automatically and the website starts AI enrichment, also for companies
+    abroad. Cached paid reports per tenant to cut costs.
+  \item Helped replace the legacy CRM companies overview: search and filters that colleagues can
+    share through a link, new columns (customer group, accounting and custom fields) in the list
+    API, and bulk editing of invoicing settings, so users update many customers at once.
+  \item Added different tools to Simplicate's MCP server
 \end{compactitem}
 
 \NewSubPart{Team}
 \begin{compactitem}
-  \item Review pull requests across the stack and took over review-lead duties; host team moments and
+  \item Review pull requests across the stack and hosted sprintdemo and host team moments and
     sprint reviews, present at the company tri-weekly and share findings in the engineering
     knowledge channel.
 \end{compactitem}
@@ -92,7 +94,7 @@ down to the lowest layer, with a debugger, a packet capture or a decompiler.}
     WordPress (ACF, GraphQL) with Next.js and styled-components frontends, from new features to
     ongoing maintenance.
   \item Supported customers with questions about their sites and turned them into technical changes.
-  \item Estimated hours for new client work.
+  \item Developing existing and new sites for customers
   \item Developed and maintained internal libraries shared across client projects.
 \end{compactitem}
 }
@@ -100,24 +102,18 @@ down to the lowest layer, with a debugger, a packet capture or a decompiler.}
 %%% Side projects
 \NewPart{Selected side projects}
 
-\TimeEntry{2025 -- 2026}{tsjak}{Equipment \& PPE management platform}
-{Multi-tenant app that tracks equipment, PPE inspections, damage incidents, rentals and depreciation,
-with access grants between organisations. Symfony API Platform on FrankenPHP (JWT, Mercure, Messenger)
-modelled with DDD aggregates, a Flutter app (BLoC), deployed to a VPS with Ansible (Vault +
-1Password, Caddy, fail2ban).}
-
-\TimeEntry{2026}{Homelab as code}{Terraform \,·\, MikroTik \,·\, Kubernetes}
+\TimeEntry{}{Homelab as code}{Terraform \,·\, MikroTik \,·\, Kubernetes}
 {Home network managed in Terraform: MikroTik router with VLAN segmentation, firewall, DHCP, centrally
 managed Wi-Fi (CAPsMAN) and WireGuard, plus Pi-hole DNS. Kubernetes on Talos Linux and Proxmox with
-MetalLB; Terraform state in S3.}
+MetalLB.}
 
-\TimeEntry{2024 -- 2026}{Reverse engineering}{Go \,·\, Python}
+\TimeEntry{}{Reverse engineering}{Go \,·\, Python}
 {Analysed EV-charger firmware formats and installer cryptography
 (\href{https://github.com/cvanh/alfen}{\color{accent}alfen}), and wrote a mitmproxy add-on that
 decodes the Stardew Valley UDP multiplayer protocol
 (\href{https://github.com/cvanh/stardew_valley_mitm}{\color{accent}stardew\_valley\_mitm}).}
 
-\TimeEntry{2023 -- 2024}{Smaller projects}{}
+\TimeEntry{}{Smaller projects}{}
 {Ansible roles that provision a Hetzner server (Docker, fail2ban, Cockpit, off-site backups); a Go
 scraper pipeline over Kafka that compares climbing-gear prices; a Go desktop notifier for CI builds.}
 
@@ -125,8 +121,6 @@ scraper pipeline over Kafka that compares climbing-gear prices; a Go desktop not
 \NewPart{Education}
 
 \TimeEntry{Aug 2023 -- Feb 2024}{HBO-ICT}{Hogeschool Utrecht}{}
-% TODO: replace with the exact AWS certification you are working towards.
-\TimeEntry{2026 -- present}{AWS training}{Self-initiated, in progress}{}
 \TimeEntry{Aug 2020 -- Jun 2023}{MBO 4 Software Development}{Grafisch Lyceum Utrecht}{}
 
 %%% Volunteering
@@ -135,7 +129,7 @@ scraper pipeline over Kafka that compares climbing-gear prices; a Go desktop not
 \TimeEntry{Sep 2024 -- Sep 2025}{Board member, weekend coordinator}{Utrechtse Studenten Alpen Club}
 {Organised around 50 climbing trips a year, coordinating participants and instructors.}
 
-\TimeEntry{2025}{Climbing instructor}{Certified}
+\TimeEntry{2025}{Climbing instructor(SKI3-OVSP)}{Certified}
 {Teach climbing and lead climbing trips outdoors.}
 
 %%% Languages and interests
