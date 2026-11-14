@@ -20,7 +20,6 @@
 
 %%% Profile
 \NewPart{Profile}
-\SimpleEntry{engineer with a strong focus on infrastructure.
 Product engineer with a strong infrastructure focus.
 At Simplicate I ship features across a PHP (Symfony/Yii) and React/TypeScript SaaS platform and own parts of its AWS infrastructure in Terraform: ECS Fargate migrations, security alerting, data-store upgrades and Datadog observability.
 I care about shipping features customers actually use.
@@ -35,19 +34,19 @@ I care about shipping features customers actually use.
 {%
 \NewSubPart{Cloud infrastructure (AWS, Terraform)}
 \begin{compactitem}
-  \item Migrated the infrastructure side of moving PDF generation to a new ECS Fargate service (ECR, ALB,
-    Route 53): implement visibility. Rolled out behind a feature flag with gradual traffic shift and zero downtime to limit blast radius
-  \item Migrated ElastiCache Serverless and MemoryDB to Valkey for: cost savings, performance and multi-az setup
-  \item Ran disaster-recovery exercises(RDS, S3)
+  \item Migrated PDF generation to a new ECS Fargate service (ECR, ALB, Route 53).
+    Rolled out behind a feature flag with gradual traffic shift and zero downtime to limit blast radius
+  \item Migrated ElastiCache Serverless and MemoryDB to Valkey for cost savings, performance and multi-AZ resilience
+  \item Ran disaster-recovery exercises (RDS, S3)
   \item Set up GuardDuty alerting to Slack through Amazon Q
 \end{compactitem}
 
 \NewSubPart{Product engineering (full-stack: PHP/Symfony, React/TypeScript)}
 \begin{compactitem}
-  \item Migrate OpenKVK
-    Credit Device, from API client to UI. To help our customers creating companies and to use it in our 'Maistro' scraper
-  \item Migrated legacy CRM overview screens to Symfony and react. Accelerating development velocity from months to weeks
-  \item Add tools to Simplicate's MCP server and improved how AI coding agents work in the codebase
+  \item Migrated the OpenKVK (Dutch company register) Credit Device from API client to UI,
+    helping customers create companies and feeding the Maistro scraper
+  \item Migrated legacy CRM overview screens to Symfony and React. Accelerating development velocity from months to weeks
+  \item Added tools to Simplicate's MCP server and improved how AI coding agents work in the codebase
 \end{compactitem}
 
 \NewSubPart{Team}
@@ -69,7 +68,6 @@ I care about shipping features customers actually use.
     WordPress (ACF, GraphQL) with Next.js and styled-components frontends, from new features to
     ongoing maintenance.
   \item Supported customers with questions about their sites and turned them into technical changes.
-  \item Developing existing and new sites for customers
   \item Developed and maintained internal libraries shared across client projects.
 \end{compactitem}
 }
