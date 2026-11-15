@@ -64,13 +64,20 @@
   {\small\color{muted}#1}\par}
 \newcommand{\cvsep}{\enspace{\color{rulecol}|}\enspace}
 
+% Photo framing inside the 2.5cm circle. The photo is landscape, so it is scaled up
+% past the circle and shifted to put the face in the middle.
+% \PhotoWidth: width of the whole image (larger = more zoom).
+% \PhotoShift: where the image centre sits relative to the circle centre.
+\newcommand{\PhotoWidth}{5.33cm}
+\newcommand{\PhotoShift}{(0.17cm,-0.33cm)}
+
 \newcommand{\CircularPhoto}[1]{%
   \begin{tikzpicture}
     \clip (0,0) circle (1.25cm);
-    \node at (0,0) {\includegraphics[width=2.5cm]{#1}};
+    \node[inner sep=0pt] at \PhotoShift {\includegraphics[width=\PhotoWidth]{#1}};
   \end{tikzpicture}}
 
-% \begin{CVHeader}{photo.jpg} ... \end{CVHeader}; leave the argument empty for no photo.
+% \begin{CVHeader}{fonts/photo.jpg} ... \end{CVHeader}; leave the argument empty for no photo.
 \newenvironment{CVHeader}[1]{%
   \def\cv@photo{#1}%
   \noindent\begin{minipage}[c]{\dimexpr\linewidth-2.9cm\relax}}
